@@ -26,6 +26,8 @@ def submit_interests():
     
     #Process data
     #For now, just log it
+
+    #test - jorge
     
     return jsonify({"success": True, "message": "Interests received!"})
     
