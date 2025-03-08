@@ -1,0 +1,9 @@
+Commands for Git:
+
+if u wanna update ur branch to someone elses branch:
+
+git fetch origin
+
+git checkout "person name"-branch
+
+git pull origin "person name"-branch
