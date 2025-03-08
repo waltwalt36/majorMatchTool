@@ -28,14 +28,7 @@
             max-width: 1200px;
             padding: 1rem 0;
             margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo {
-            height: 40px;
-            width: auto;
+            text-align: center;
         }
 
         .container {
@@ -43,9 +36,6 @@
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 4rem;
-            display: flex;
-            gap: 4rem;
-            align-items: center;
             max-width: 1200px;
             width: 100%;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -53,7 +43,7 @@
         }
 
         .content {
-            flex: 1;
+            width: 100%;
         }
 
         h1 {
@@ -63,6 +53,7 @@
             background: linear-gradient(45deg, #FF6B6B, #FFA500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-align: center;
         }
 
         p {
@@ -70,19 +61,7 @@
             line-height: 1.6;
             margin-bottom: 2rem;
             color: rgba(255, 255, 255, 0.9);
-        }
-
-        .image-container {
-            flex: 1;
-            max-width: 500px;
-        }
-
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            transform: rotate(3deg);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
         }
 
         .button-container {
@@ -90,6 +69,7 @@
             flex-wrap: wrap;
             gap: 1rem;
             margin-top: 2rem;
+            justify-content: center;
         }
 
         .interest-button {
@@ -128,10 +108,8 @@
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
+            display: block;
+            margin: 2rem auto 0;
         }
 
         .next-button:hover {
@@ -148,28 +126,22 @@
 
         @media (max-width: 768px) {
             .container {
-                flex-direction: column;
                 padding: 2rem;
-                gap: 2rem;
             }
 
             h1 {
                 font-size: 2rem;
             }
 
-            .image-container {
-                max-width: 300px;
-            }
-
-            header {
-                padding: 1rem;
+            .interest-button {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="path-to-your-logo.png" alt="Logo" class="logo">
         <h2>Time Preference Selector</h2>
     </header>
 
@@ -203,18 +175,9 @@
             <button class="next-button" onclick="submitPreferences()">
                 Next ➡️
             </button>
-            <div style="margin-top: 2rem; color: rgba(255, 255, 255, 0.7)">
-                <small>🔒 Your selections are secure and private.</small>
-            </div>
-        </div>
-        <div class="image-container">
-            <img src="https://example.com/path/to/your/time-preference-image.jpg" alt="Time Preference">
         </div>
     </div>
 
-    <footer>
-        <p>© 2024 Your Organization. All rights reserved.</p>
-    </footer>
 
     <script>
         let selectedCount = 0;

@@ -28,14 +28,7 @@
             max-width: 1200px;
             padding: 1rem 0;
             margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo {
-            height: 40px;
-            width: auto;
+            text-align: center;
         }
 
         .container {
@@ -43,9 +36,6 @@
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 4rem;
-            display: flex;
-            gap: 4rem;
-            align-items: center;
             max-width: 1200px;
             width: 100%;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -53,7 +43,7 @@
         }
 
         .content {
-            flex: 1;
+            width: 100%;
         }
 
         h1 {
@@ -63,6 +53,7 @@
             background: linear-gradient(45deg, #FF6B6B, #FFA500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-align: center;
         }
 
         p {
@@ -70,14 +61,7 @@
             line-height: 1.6;
             margin-bottom: 2rem;
             color: rgba(255, 255, 255, 0.9);
-        }
-
-        .image-container {
-            flex: 1;
-            max-width: 500px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            text-align: center;
         }
 
         .button-container {
@@ -85,6 +69,7 @@
             flex-wrap: wrap;
             gap: 1rem;
             margin-top: 2rem;
+            justify-content: center;
         }
 
         .interest-button {
@@ -101,10 +86,10 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            width: calc(50% - 0.5rem); /* Two columns with gap */
+            width: calc(50% - 0.5rem);
             text-align: center;
-            white-space: normal; /* Allow text wrapping */
-            min-height: 80px; /* Consistent button height */
+            white-space: normal;
+            min-height: 80px;
         }
 
         .interest-button.selected {
@@ -128,10 +113,8 @@
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
+            display: block;
+            margin: 2rem auto 0;
         }
 
         .next-button:hover {
@@ -148,38 +131,21 @@
 
         @media (max-width: 768px) {
             .container {
-                flex-direction: column;
                 padding: 2rem;
-                gap: 2rem;
             }
 
             h1 {
                 font-size: 2rem;
             }
 
-            .image-container {
-                max-width: 300px;
-            }
-
-            header {
-                padding: 1rem;
-            }
-
             .interest-button {
-                width: 100%; /* Full width on mobile */
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <!-- Paw Logo -->
-        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40">
-            <path fill="#FF6B6B" d="M50 20c-8.284 0-15 6.716-15 15v10c0 8.284 6.716 15 15 15s15-6.716 15-15V35c0-8.284-6.716-15-15-15z"/>
-            <path fill="#FFA500" d="M30 50c-8.284 0-15 6.716-15 15v10c0 8.284 6.716 15 15 15s15-6.716 15-15V65c0-8.284-6.716-15-15-15z"/>
-            <path fill="#FF6B6B" d="M70 50c-8.284 0-15 6.716-15 15v10c0 8.284 6.716 15 15 15s15-6.716 15-15V65c0-8.284-6.716-15-15-15z"/>
-            <path fill="#FFA500" d="M50 80c-8.284 0-15 6.716-15 15v10c0 8.284 6.716 15 15 15s15-6.716 15-15V95c0-8.284-6.716-15-15-15z"/>
-        </svg>
         <h2>Interest Selection</h2>
     </header>
 
@@ -219,76 +185,34 @@
             <button class="next-button" onclick="submitInterests()">
                 Next ➡️
             </button>
-            <div style="margin-top: 2rem; color: rgba(255, 255, 255, 0.7)">
-                <small>🔒 Your selections are secure and private.</small>
-            </div>
         </div>
-        <!-- Left blank as requested -->
-        <div class="image-container"></div>
     </div>
 
-    <footer>
-        <p>© 2024 Promethius. All rights reserved.</p>
-    </footer>
 
     <script>
-            // Array to store selected interests
-    let selectedInterests = [];
+        let selectedInterests = [];
 
-    function toggleInterest(button) {
-    button.classList.toggle('selected');
-    const interest = button.textContent.trim();
+        function toggleInterest(button) {
+            button.classList.toggle('selected');
+            const interest = button.textContent.trim();
+            
+            if (button.classList.contains('selected')) {
+                selectedInterests.push(interest);
+            } else {
+                selectedInterests = selectedInterests.filter(item => item !== interest);
+            }
+        }
 
-    // Add or remove interest from the array
-    if (button.classList.contains('selected')) {
-        selectedInterests.push(interest);
-    } else {
-        selectedInterests = selectedInterests.filter(item => item !== interest);
-    }
-}
+        function submitInterests() {
+            if (selectedInterests.length === 0) {
+                alert("Please select at least one interest!");
+                return;
+            }
 
-function submitInterests() {
-    if (selectedInterests.length === 0) {
-        alert("Please select at least one interest!");
-        return;
-    }
-
-    // Log the selected interests (for debugging)
-    console.log("Selected Interests:", selectedInterests);
-
-    // Send data to the backend
-    sendDataToBackend(selectedInterests);
-
-    // Redirect to the next question page
-    window.location.href = "Q2.html";
-}
-
-function sendDataToBackend(data) {
-    // Replace this with your actual backend API endpoint
-    const backendEndpoint = "https://your-backend-api.com/submit-interests";
-
-    // Create a payload to send to the backend
-    const payload = {
-        interests: data, // Send the selected interests
-        timestamp: new Date().toISOString(), // Optional: Add a timestamp
-    };
-
-    // Send the data using fetch
-    fetch(backendEndpoint, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Success:", data);
-        })
-        .catch((error) => {
-            console.error("Error:", error);
-        });
-}
-</script>
+            // Replace with actual backend integration
+            console.log("Selected Interests:", selectedInterests);
+            window.location.href = "Q2.html";
+        }
+    </script>
 </body>
 </html>
