@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interest Selection</title>
+    <title>Time Preference Selector</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -170,43 +170,37 @@
 <body>
     <header>
         <img src="path-to-your-logo.png" alt="Logo" class="logo">
-        <h2>Interest Selection</h2>
+        <h2>Time Preference Selector</h2>
     </header>
 
     <div class="container">
         <div class="content">
-            <h1>Which topics or activities genuinely interest you?</h1>
-            <p>Pick as many as you want!</p>
+            <h1>How do you prefer to spend your time?</h1>
+            <p>Pick your top 2!</p>
             <div class="button-container">
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    🔢 Solving problems and working with numbers
+                    🏗️ Building or creating things
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    🔬 Science, healthcare, and how things work
+                    📊 Researching and analyzing information
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    💻 Computers, coding, and technology
+                    🎤 Talking, debating, or presenting ideas
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    🎨 Creativity, design, and self-expression
+                    🎭 Expressing myself through art, music, or film
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    📖 Writing, communication, and storytelling
+                    🔬 Experimenting and testing theories
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    🤝 Helping and understanding people
+                    🤝 Helping others improve their lives
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    📊 Business, marketing, and finance
-                </button>
-                <button class="interest-button" onclick="toggleInterest(this)">
-                    ⚖️ Politics, law, and global issues
-                </button>
-                <button class="interest-button" onclick="toggleInterest(this)">
-                    🌱 Nature, animals, and the environment
+                    💡 Brainstorming new business ideas
                 </button>
             </div>
-            <button class="next-button" onclick="submitInterests()">
+            <button class="next-button" onclick="submitPreferences()">
                 Next ➡️
             </button>
             <div style="margin-top: 2rem; color: rgba(255, 255, 255, 0.7)">
@@ -214,25 +208,39 @@
             </div>
         </div>
         <div class="image-container">
-            <img src="https://example.com/path/to/your/interest-image.jpg" alt="Interest Selection">
+            <img src="https://example.com/path/to/your/time-preference-image.jpg" alt="Time Preference">
         </div>
     </div>
 
     <footer>
-        <p>© 2024 Promethius. All rights reserved.</p>
+        <p>© 2024 Your Organization. All rights reserved.</p>
     </footer>
 
     <script>
+        let selectedCount = 0;
+
         function toggleInterest(button) {
-            button.classList.toggle('selected');
+            if (button.classList.contains('selected')) {
+                button.classList.remove('selected');
+                selectedCount--;
+            } else if (selectedCount < 2) {
+                button.classList.add('selected');
+                selectedCount++;
+            } else {
+                alert("You can only select up to 2 options!");
+            }
         }
 
-        function submitInterests() {
+        function submitPreferences() {
             const selectedButtons = document.querySelectorAll('.interest-button.selected');
-            const selectedInterests = Array.from(selectedButtons).map(button => button.textContent.trim());
-            alert(`You selected: ${selectedInterests.join(', ')}`);
-            // Redirect to the next question page
-            window.location.href = "timePreference.html";
+            if (selectedButtons.length < 2) {
+                alert("Please select exactly 2 options!");
+                return;
+            }
+            const selectedPreferences = Array.from(selectedButtons).map(button => button.textContent.trim());
+            alert(`You selected: ${selectedPreferences.join(', ')}`);
+            // Redirect to the next page
+            window.location.href = ".html";
         }
     </script>
 </body>
