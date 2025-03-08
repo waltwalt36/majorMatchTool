@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Major Match Tool</title>
+    <title>Time Preference Selector</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -87,11 +87,37 @@
 
         .button-container {
             display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
             margin-top: 2rem;
         }
 
-        .cta-button {
+        .interest-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .interest-button.selected {
+            background: linear-gradient(45deg, #FF6B6B, #FFA500);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .interest-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .next-button {
             background: linear-gradient(45deg, #FF6B6B, #FFA500);
             color: white;
             padding: 1rem 2rem;
@@ -105,9 +131,10 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            margin-top: 2rem;
         }
 
-        .cta-button:hover {
+        .next-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
         }
@@ -142,40 +169,78 @@
 </head>
 <body>
     <header>
-        <!-- Paw Logo -->
-        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40">
-            <path fill="#FF6B6B" d="M50 20c-8.284 0-15 6.716-15 15v10c0 8.284 6.716 15 15 15s15-6.716 15-15V35c0-8.284-6.716-15-15-15z"/>
-            <path fill="#FFA500" d="M30 50c-8.284 0-15 6.716-15 15v10c0 8.284 6.716 15 15 15s15-6.716 15-15V65c0-8.284-6.716-15-15-15z"/>
-            <path fill="#FF6B6B" d="M70 50c-8.284 0-15 6.716-15 15v10c0 8.284 6.716 15 15 15s15-6.716 15-15V65c0-8.284-6.716-15-15-15z"/>
-            <path fill="#FFA500" d="M50 80c-8.284 0-15 6.716-15 15v10c0 8.284 6.716 15 15 15s15-6.716 15-15V95c0-8.284-6.716-15-15-15z"/>
-        </svg>
-        <h2>Major Match Tool</h2>
+        <img src="path-to-your-logo.png" alt="Logo" class="logo">
+        <h2>Time Preference Selector</h2>
     </header>
 
     <div class="container">
         <div class="content">
-            <h1>Discover Your Perfect Major</h1>
-            <p>Take our 5-minute assessment to match with programs that align with your strengths, interests, and career aspirations.</p>
+            <h1>How do you prefer to spend your time?</h1>
+            <p>Pick your top 2!</p>
             <div class="button-container">
-                <button class="cta-button" onclick="startTest()">
-                    Start the Assessment
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    🏗️ Building or creating things
+                </button>
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    📊 Researching and analyzing information
+                </button>
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    🎤 Talking, debating, or presenting ideas
+                </button>
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    🎭 Expressing myself through art, music, or film
+                </button>
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    🔬 Experimenting and testing theories
+                </button>
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    🤝 Helping others improve their lives
+                </button>
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    💡 Brainstorming new business ideas
                 </button>
             </div>
+            <button class="next-button" onclick="submitPreferences()">
+                Next ➡️
+            </button>
             <div style="margin-top: 2rem; color: rgba(255, 255, 255, 0.7)">
-                <small> 100% Private & Secure |  Developed by Advisors</small>
+                <small>🔒 Your selections are secure and private.</small>
             </div>
         </div>
-        <!-- Left blank as requested -->
-        <div class="image-container"></div>
+        <div class="image-container">
+            <img src="https://example.com/path/to/your/time-preference-image.jpg" alt="Time Preference">
+        </div>
     </div>
 
     <footer>
-        <p>© 2024 Major Match Tool. Committed to student success.</p>
+        <p>© 2024 Your Organization. All rights reserved.</p>
     </footer>
 
     <script>
-        function startTest() {
-            window.location.href = "whichTopic.html";
+        let selectedCount = 0;
+
+        function toggleInterest(button) {
+            if (button.classList.contains('selected')) {
+                button.classList.remove('selected');
+                selectedCount--;
+            } else if (selectedCount < 2) {
+                button.classList.add('selected');
+                selectedCount++;
+            } else {
+                alert("You can only select up to 2 options!");
+            }
+        }
+
+        function submitPreferences() {
+            const selectedButtons = document.querySelectorAll('.interest-button.selected');
+            if (selectedButtons.length < 2) {
+                alert("Please select exactly 2 options!");
+                return;
+            }
+            const selectedPreferences = Array.from(selectedButtons).map(button => button.textContent.trim());
+            alert(`You selected: ${selectedPreferences.join(', ')}`);
+            // Redirect to the next page
+            window.location.href = ".html";
         }
     </script>
 </body>
