@@ -155,14 +155,14 @@
     <div class="container">
         <div class="content">
             <h1>Discover Your Perfect Major</h1>
-            <p>Take our 5-minute assessment to match with programs that align with your strengths, interests, and career aspirations.</p>
+            <p>Take our short assessment to match with major programs that align with your strengths, interests, and career aspirations.</p>
             <div class="button-container">
                 <button class="cta-button" onclick="startTest()">
                     Start the Assessment
                 </button>
             </div>
             <div style="margin-top: 2rem; color: rgba(255, 255, 255, 0.7)">
-                <small> 100% Private & Secure |  Developed by Advisors</small>
+                <small></small>
             </div>
         </div>
         <!-- Left blank as requested -->
@@ -175,7 +175,7 @@
 
     <script>
         function startTest() {
-            window.location.href = "Q1.html";
+            window.location.href = "{{ url_for('q1') }}";
         }
     </script>
 </body>

@@ -6,6 +6,14 @@ app = Flask(__name__)
 def menu():
     return render_template('menu.html')
 
+@app.route('/Q1')
+def q1():
+    return render_template('Q1.html')
+
+@app.route('/Q2', endpoint='q2')
+def q2():
+    return render_template('Q2.html')
+
 def submit_interests():
     data = request.get_json()
     
