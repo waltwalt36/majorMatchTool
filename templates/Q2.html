@@ -196,15 +196,50 @@
 
         function submitPreferences() {
             const selectedButtons = document.querySelectorAll('.interest-button.selected');
+            
             if (selectedButtons.length < 2) {
                 alert("Please select exactly 2 options!");
                 return;
             }
+        
+            // Get selected preferences as text
             const selectedPreferences = Array.from(selectedButtons).map(button => button.textContent.trim());
-            alert(`You selected: ${selectedPreferences.join(', ')}`);
-            // Redirect to the next page
-            window.location.href = "{{ url_for('cs') }}";
+        
+            console.log("Selected Preferences:", selectedPreferences); // Debugging
+        
+            // Send data to the backend first
+            sendDataToBackend(selectedPreferences)
+                .then(() => {
+                    // After successful submission, redirect
+                    window.location.href = "/CS";
+                })
+                .catch(error => {
+                    console.error("Error sending data:", error);
+                    alert("There was a problem submitting your choices. Please try again.");
+                });
         }
-    </script>
+        
+        function sendDataToBackend(data) {
+            const backendEndpoint = "http://127.0.0.1:54321/submit_preferences";
+        
+            const payload = {
+                preferences: data,
+                timestamp: new Date().toISOString(),
+            };
+        
+            return fetch(backendEndpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            })
+            .then(response => {
+                if (!response.ok) throw new Error("Network response was not ok");
+                return response.json();
+            })
+            .then(data => {
+                console.log("Success:", data);
+            });
+        }
+        </script>
 </body>
 </html>
