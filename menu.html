@@ -1,9 +1,53 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title> Hello World</title>
-    </head>
-    <body>
-        <h1>Hello, World</h1>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take the Test</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Welcome!</h2>
+        <p>Before proceeding, please take this short test.</p>
+        <button onclick="startTest()">Take the Test</button>
+    </div>
+
+    <script>
+        function startTest() {
+            window.location.href = "test.html"; // Change this to your test page
+        }
+    </script>
+
+</body>
 </html>
