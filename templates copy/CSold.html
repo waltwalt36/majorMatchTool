@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Major Recommendation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            margin: 0;
+            body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.results-container {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 4rem;
+    max-width: 800px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+    margin: 2rem 0;
+}
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Add these new styles */
+        .major-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #FF6B6B, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .major-ranking {
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #FF6B6B, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* Rest of existing styles remain the same */
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .rubiks-cube {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: solveCube 4s ease-in-out infinite;
+        }
+
+        .face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .cubelet {
+            width: 33.33%;
+            height: 33.33%;
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .front { transform: translateZ(50px); background: #FF6B6B; }
+        .back { transform: rotateY(180deg) translateZ(50px); background: #FFA500; }
+        .right { transform: rotateY(90deg) translateZ(50px); background: #4CAF50; }
+        .left { transform: rotateY(-90deg) translateZ(50px); background: #2196F3; }
+        .top { transform: rotateX(90deg) translateZ(50px); background: #FFEB3B; }
+        .bottom { transform: rotateX(-90deg) translateZ(50px); background: #9C27B0; }
+
+        @keyframes solveCube {
+            0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+            25% { transform: rotateX(90deg) rotateY(0) rotateZ(0); }
+            50% { transform: rotateX(90deg) rotateY(90deg) rotateZ(0); }
+            75% { transform: rotateX(90deg) rotateY(90deg) rotateZ(90deg); }
+            100% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+        }
+
+        .results-container {
+            display: none;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 4rem;
+            max-width: 800px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .major-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #FF6B6B;
+        }
+
+        .major-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 3rem;
+            text-align: justify;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #FF6B6B, #FFA500);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .results-container {
+                padding: 2.5rem;
+            }
+            
+            .major-card h2 {
+                font-size: 1.7rem;
+            }
+            
+            .major-description {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div class="loader" id="loader">
+        <div class="rubiks-cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+        </div>
+        <p>Analyzing your answers...</p>
+    </div>
+
+    <div class="results-container" id="results">
+        <div class="major-card">
+            <div class="major-ranking">1st Recommendation</div>
+            <h2>Computer Science</h2>
+            <p class="major-description">
+                If you enjoy programming, a major in Computer Science is an excellent choice. This field combines theoretical foundations with practical skills, allowing you to delve into algorithms, data structures, software development, and systems design. You'll learn to write efficient code, solve complex problems, and create innovative software solutions. Additionally, computer science offers numerous opportunities to work on team projects, whether in collaborative coding sessions, group research initiatives, or software development teams.
+            </p>
+        </div>
+
+        <div class="major-card">
+            <div class="major-ranking">2nd Recommendation</div>
+            <h2>Engineering</h2>
+            <p class="major-description">
+                If you're interested in both programming and science, a major in Engineering could be ideal. Engineering combines scientific principles with practical applications to design and innovate solutions to real-world problems. Depending on your focus—such as software, mechanical, or electrical engineering—you'll engage in projects that require both individual and team efforts. Engineering projects often involve collaborative problem-solving, where teams design, prototype, and test solutions.
+            </p>
+        </div>
+
+        <div class="major-card">
+            <div class="major-ranking">3rd Recommendation</div>
+            <h2>Biology</h2>
+            <p class="major-description">
+                For those passionate about science, a major in Biology provides a comprehensive understanding of living organisms, from cellular processes to ecosystems. You'll explore various sub-disciplines such as genetics, ecology, and physiology, gaining insights into the complexities of life. Biology also emphasizes teamwork through lab work, field studies, and research projects, where collaboration is key to conducting experiments and analyzing data.
+            </p>
+        </div>
+
+        <button class="cta-button" onclick="window.location.href='/'">Go to Menu</button>
+            ↻ Retake Assessment
+        </button>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('results').style.display = 'block';
+        }, 4000);
+    </script>
+</body>
+</html>

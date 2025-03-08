@@ -1,17 +1,39 @@
 import json
 import os
 import sys
-
+import re
 import boto3
 import botocore
+
+import re
+
+# Function to parse the string and create a dictionary
+def parse_majors_and_descriptions(output):
+    # Define a dictionary to store the parsed data
+    majors_dict = {}
+
+    # Regular expression to match major and description pairs
+    pattern = r"-MAJOR: (.*?)\nDESCRIPTION: (.*?)(?=\n-MAJOR:|\Z)"
+
+    # Find all matches
+    matches = re.findall(pattern, output, re.DOTALL)
+
+    # Process each match and store it in the dictionary
+    for match in matches:
+        major = match[0].strip()
+        description = match[1].strip()
+        majors_dict[major] = description
+    
+    return majors_dict
+
 
 session = boto3.session.Session()
 region = session.region_name
 boto3_bedrock = boto3.client(service_name = 'bedrock-runtime',region_name = region)
 
-prompt = f"""
-What major would you recommend for a student who loves to program and would like to be an entrepreneur?
-"""
+prompt = "Recommend 3 majors based on personal context."
+parameters = "I enjoy programming, science, and working on a team" # Context will be added here
+formatting = "\nFormat your response like this: -Make the first word of each major 'MAJOR' -Before the description write 'DESCRIPTION' -Give a description that is around 100 words per major"
 
 body = json.dumps(
     {
@@ -21,13 +43,13 @@ body = json.dumps(
             "role": "user",
             "content": [
                 {
-                    "text": prompt
+                    "text": prompt+parameters+formatting
                 }
             ]
         }
     ],
     "inferenceConfig": {
-        "maxTokens": 300,
+        "maxTokens": 3000,
         "temperature": 0.3,
         "topP": 0.1,
         "topK": 20
@@ -48,8 +70,16 @@ try:
     response_body = json.loads(response.get('body').read())
     
     # Nova models return response in a different format
-    content_text = response_body["output"]["message"]["content"][0]["text"]
-    print(content_text)
+    llm_output = response_body["output"]["message"]["content"][0]["text"]
+ 
+    # Parse the string and store the results in a dictionary
+    majors_data = parse_majors_and_descriptions(llm_output)
+
+    # Print the dictionary to verify
+    print(majors_data)   
+    
+    
+    
 
 except botocore.exceptions.ClientError as error:
     if error.response['Error']['Code'] == 'AccessDeniedException':

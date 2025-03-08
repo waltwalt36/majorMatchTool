@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Preference Selector</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1200px;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 4rem;
+            max-width: 1200px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .content {
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(45deg, #FF6B6B, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .interest-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .interest-button.selected {
+            background: linear-gradient(45deg, #FF6B6B, #FFA500);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .interest-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .next-button {
+            background: linear-gradient(45deg, #FF6B6B, #FFA500);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: block;
+            margin: 2rem auto 0;
+        }
+
+        .next-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .interest-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Time Preference Selector</h2>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            <h1>How do you prefer to spend your time?</h1>
+            <p>Pick your top 2!</p>
+            <div class="button-container">
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    🏗️ Building or creating things
+                </button>
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    📊 Researching and analyzing information
+                </button>
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    🎤 Talking, debating, or presenting ideas
+                </button>
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    🎭 Expressing myself through art, music, or film
+                </button>
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    🔬 Experimenting and testing theories
+                </button>
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    🤝 Helping others improve their lives
+                </button>
+                <button class="interest-button" onclick="toggleInterest(this)">
+                    💡 Brainstorming new business ideas
+                </button>
+            </div>
+            <button class="next-button" onclick="submitPreferences()">
+                Next
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        let selectedCount = 0;
+
+        function toggleInterest(button) {
+            if (button.classList.contains('selected')) {
+                button.classList.remove('selected');
+                selectedCount--;
+            } else if (selectedCount < 2) {
+                button.classList.add('selected');
+                selectedCount++;
+            } else {
+                alert("You can only select up to 2 options!");
+            }
+        }
+
+        function submitPreferences() {
+            const selectedButtons = document.querySelectorAll('.interest-button.selected');
+            if (selectedButtons.length < 2) {
+                alert("Please select exactly 2 options!");
+                return;
+            }
+            const selectedPreferences = Array.from(selectedButtons).map(button => button.textContent.trim());
+            alert(`You selected: ${selectedPreferences.join(', ')}`);
+            // Redirect to the next page
+            window.location.href = "{{ url_for('cs') }}";
+        }
+    </script>
+</body>
+</html>
