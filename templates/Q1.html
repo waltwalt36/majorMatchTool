@@ -260,7 +260,7 @@ function submitInterests() {
     sendDataToBackend(selectedInterests);
 
     // Redirect to the next question page
-    window.location.href = "Q2.html";
+    window.location.href = "{{ url_for('q2') }}";
 }
 
 function sendDataToBackend(data) {
