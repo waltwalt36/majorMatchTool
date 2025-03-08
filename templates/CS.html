@@ -12,7 +12,7 @@
             color: #ffffff;
             display: flex;
             flex-direction: column;
-            align-items: center;/
+            align-items: center;
             justify-content: center;
             padding: 2rem;
             margin: 0;
@@ -20,6 +20,26 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* Add these new styles */
+        .major-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #FF6B6B, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .major-ranking {
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, #FF6B6B, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        /* Rest of existing styles remain the same */
         .loader {
             display: flex;
             justify-content: center;
@@ -69,7 +89,7 @@
         }
 
         .results-container {
-            display: none; /* Hidden initially */
+            display: none;
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
             border-radius: 20px;
@@ -80,15 +100,12 @@
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
         }
 
-        .major-title {
-            font-size: 2.8rem;
-            margin-bottom: 2.5rem;
-            background: linear-gradient(45deg, #FF6B6B, #FFA500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-            letter-spacing: -0.05em;
-            font-weight: 700;
+        .major-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #FF6B6B;
         }
 
         .major-description {
@@ -123,10 +140,10 @@
                 padding: 2.5rem;
             }
             
-            .major-title {
-                font-size: 2.2rem;
+            .major-card h2 {
+                font-size: 1.7rem;
             }
-
+            
             .major-description {
                 font-size: 1rem;
                 line-height: 1.7;
@@ -152,23 +169,41 @@
         <p>Analyzing your answers...</p>
     </div>
 
-    <!-- Results Container (Hidden Initially) -->
     <div class="results-container" id="results">
-        <h1 class="major-title">COMPUTER SCIENCE</h1>
-        <p class="major-description">
-            If you enjoy programming, a major in Computer Science is an excellent choice. This field combines theoretical foundations with practical skills, allowing you to delve into algorithms, data structures, software development, and systems design. You'll learn to write efficient code, solve complex problems, and create innovative software solutions. Additionally, computer science offers numerous opportunities to work on team projects, whether in collaborative coding sessions, group research initiatives, or software development teams. This major will equip you with the technical skills and collaborative experience needed to thrive in the tech industry, where teamwork and problem-solving are crucial.
-        </p>
+        <div class="major-card">
+            <div class="major-ranking">1st Recommendation</div>
+            <h2>Computer Science</h2>
+            <p class="major-description">
+                If you enjoy programming, a major in Computer Science is an excellent choice. This field combines theoretical foundations with practical skills, allowing you to delve into algorithms, data structures, software development, and systems design. You'll learn to write efficient code, solve complex problems, and create innovative software solutions. Additionally, computer science offers numerous opportunities to work on team projects, whether in collaborative coding sessions, group research initiatives, or software development teams.
+            </p>
+        </div>
+
+        <div class="major-card">
+            <div class="major-ranking">2nd Recommendation</div>
+            <h2>Engineering</h2>
+            <p class="major-description">
+                If you're interested in both programming and science, a major in Engineering could be ideal. Engineering combines scientific principles with practical applications to design and innovate solutions to real-world problems. Depending on your focus—such as software, mechanical, or electrical engineering—you'll engage in projects that require both individual and team efforts. Engineering projects often involve collaborative problem-solving, where teams design, prototype, and test solutions.
+            </p>
+        </div>
+
+        <div class="major-card">
+            <div class="major-ranking">3rd Recommendation</div>
+            <h2>Biology</h2>
+            <p class="major-description">
+                For those passionate about science, a major in Biology provides a comprehensive understanding of living organisms, from cellular processes to ecosystems. You'll explore various sub-disciplines such as genetics, ecology, and physiology, gaining insights into the complexities of life. Biology also emphasizes teamwork through lab work, field studies, and research projects, where collaboration is key to conducting experiments and analyzing data.
+            </p>
+        </div>
+
         <button class="cta-button" onclick="window.location.href='index.html'">
             ↻ Retake Assessment
         </button>
     </div>
 
     <script>
-        // Simulate processing delay
         setTimeout(() => {
-            document.getElementById('loader').style.display = 'none'; // Hide loader
-            document.getElementById('results').style.display = 'block'; // Show results
-        }, 4000); // 4-second delay
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('results').style.display = 'block';
+        }, 4000);
     </script>
 </body>
 </html>
