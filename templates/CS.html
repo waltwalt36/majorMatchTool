@@ -15,40 +15,27 @@
             align-items: center;
             padding: 2rem;
             margin: 0;
-            body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-    color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-}
-
-.results-container {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(12px);
-    border-radius: 20px;
-    padding: 4rem;
-    max-width: 800px;
-    width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
-    margin: 2rem 0;
-}
             font-family: 'Inter', sans-serif;
         }
 
-        /* Add these new styles */
-        .major-card h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #FF6B6B, #FFA500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
+        .results-container {
+            display: none;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 4rem;
+            max-width: 800px;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .major-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid #FF6B6B;
         }
 
         .major-ranking {
@@ -60,7 +47,42 @@
             margin-bottom: 1rem;
         }
 
-        /* Rest of existing styles remain the same */
+        .major-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #FF6B6B, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .major-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 3rem;
+            text-align: justify;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #FF6B6B, #FFA500);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
         .loader {
             display: flex;
             justify-content: center;
@@ -109,62 +131,15 @@
             100% { transform: rotateX(0) rotateY(0) rotateZ(0); }
         }
 
-        .results-container {
-            display: none;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 4rem;
-            max-width: 800px;
-            width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .major-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-left: 4px solid #FF6B6B;
-        }
-
-        .major-description {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 3rem;
-            text-align: justify;
-        }
-
-        .cta-button {
-            background: linear-gradient(45deg, #FF6B6B, #FFA500);
-            color: white;
-            padding: 1.2rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: block;
-            margin: 2rem auto 0;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
-        }
-
         @media (max-width: 768px) {
             .results-container {
                 padding: 2.5rem;
             }
-            
+
             .major-card h2 {
                 font-size: 1.7rem;
             }
-            
+
             .major-description {
                 font-size: 1rem;
                 line-height: 1.7;
@@ -190,31 +165,15 @@
         <p>Analyzing your answers...</p>
     </div>
 
+    <!-- Results Container -->
     <div class="results-container" id="results">
+        {% for major_name, major_desc in majors_data.items() %}
         <div class="major-card">
-            <div class="major-ranking">1st Recommendation</div>
-            <h2>Computer Science</h2>
-            <p class="major-description">
-                If you enjoy programming, a major in Computer Science is an excellent choice. This field combines theoretical foundations with practical skills, allowing you to delve into algorithms, data structures, software development, and systems design. You'll learn to write efficient code, solve complex problems, and create innovative software solutions. Additionally, computer science offers numerous opportunities to work on team projects, whether in collaborative coding sessions, group research initiatives, or software development teams.
-            </p>
+            <h2>{{ major_name }}</h2>
+            <p class="major-description">{{ major_desc }}</p>
         </div>
-
-        <div class="major-card">
-            <div class="major-ranking">2nd Recommendation</div>
-            <h2>Engineering</h2>
-            <p class="major-description">
-                If you're interested in both programming and science, a major in Engineering could be ideal. Engineering combines scientific principles with practical applications to design and innovate solutions to real-world problems. Depending on your focus—such as software, mechanical, or electrical engineering—you'll engage in projects that require both individual and team efforts. Engineering projects often involve collaborative problem-solving, where teams design, prototype, and test solutions.
-            </p>
-        </div>
-
-        <div class="major-card">
-            <div class="major-ranking">3rd Recommendation</div>
-            <h2>Biology</h2>
-            <p class="major-description">
-                For those passionate about science, a major in Biology provides a comprehensive understanding of living organisms, from cellular processes to ecosystems. You'll explore various sub-disciplines such as genetics, ecology, and physiology, gaining insights into the complexities of life. Biology also emphasizes teamwork through lab work, field studies, and research projects, where collaboration is key to conducting experiments and analyzing data.
-            </p>
-        </div>
-
+    {% endfor %}
+        
         <button class="cta-button" onclick="window.location.href='/'">↻ Retake Assessment</button>
     </div>
 
