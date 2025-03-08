@@ -10,7 +10,6 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: url('path/to/your/background-image.jpg') no-repeat center center fixed; /* Add your background image URL here */
             background-color: #FFA500; /* Orange background */
             font-family: Arial, sans-serif;
         }
@@ -34,6 +33,12 @@
         button:hover {
             background-color: #FF6347; /* Lighter orange on hover */
         }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -42,7 +47,7 @@
         <h2>Welcome To Clemson Major Match Tool</h2>
         <p>Before proceeding, please take this short test.</p>
         <button onclick="startTest()">Take the Test</button>
-        <img src="tiger.jpg" alt="Tiger Image"> <!-- Add your tiger image URL here -->
+        <img src="https://example.com/path/to/your/tiger-image.jpg" alt="Tiger Image"> <!-- Add your tiger image URL here -->
     </div>
 
     <script>
