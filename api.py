@@ -10,8 +10,8 @@ region = session.region_name
 boto3_bedrock = boto3.client(service_name = 'bedrock-runtime',region_name = region)
 
 prompt = "Recommend 3 majors based on personal context."
-context = "Placeholder" # Context will be added here
-
+parameters = "I enjoy programming, science, and working on a team" # Context will be added here
+formatting = "\nFormat your response like this: -Make the first word of each major 'MAJOR' -Before the description write 'DESCRIPTION' -Give a description that is around 100 words per major"
 
 body = json.dumps(
     {
@@ -21,13 +21,13 @@ body = json.dumps(
             "role": "user",
             "content": [
                 {
-                    "text": prompt
+                    "text": prompt+parameters+formatting
                 }
             ]
         }
     ],
     "inferenceConfig": {
-        "maxTokens": 300,
+        "maxTokens": 3000,
         "temperature": 0.3,
         "topP": 0.1,
         "topK": 20
