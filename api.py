@@ -9,9 +9,9 @@ session = boto3.session.Session()
 region = session.region_name
 boto3_bedrock = boto3.client(service_name = 'bedrock-runtime',region_name = region)
 
-prompt = f"""
-What major would you recommend for a student who loves to program and would like to be an entrepreneur?
-"""
+prompt = "Recommend 3 majors based on personal context."
+context = "Placeholder" # Context will come from 
+
 
 body = json.dumps(
     {
