@@ -4,5 +4,3 @@ import openai
 app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
-def home():
-    
