@@ -14,8 +14,9 @@ def q1():
 def q2():
     return render_template('Q2.html')
 
+@app.route('/submit_interests', methods=['POST'])  # Add this route
 def submit_interests():
-    data = request.get_json()
+    data = request.get_json()  # Get JSON data from the request
     
     interests = data.get("interests")
     timestamp = data.get("timestamp")
@@ -24,10 +25,8 @@ def submit_interests():
     print("Received interests:", interests)
     print("Timestamp:", timestamp)
     
-    #Process data
-    #For now, just log it
-
-    
+    # Process data (e.g., store in a database, forward to another API, etc.)
+    # For now, just log it
     
     return jsonify({"success": True, "message": "Interests received!"})
     
