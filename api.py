@@ -10,7 +10,7 @@ region = session.region_name
 boto3_bedrock = boto3.client(service_name = 'bedrock-runtime',region_name = region)
 
 prompt = "Recommend 3 majors based on personal context."
-context = "Placeholder" # Context will come from 
+context = "Placeholder" # Context will be added here
 
 
 body = json.dumps(
