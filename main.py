@@ -7,5 +7,5 @@ def menu():
     return render_template('menu.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=54321, debug=True)
+    app.run(port=54321, debug=True)
     
