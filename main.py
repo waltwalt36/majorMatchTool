@@ -14,6 +14,10 @@ def q1():
 def q2():
     return render_template('Q2.html')
 
+@app.route('/CS')
+def cs():
+    return render_template('CS.html')
+
 def submit_interests():
     data = request.get_json()
     
@@ -30,4 +34,4 @@ def submit_interests():
     return jsonify({"success": True, "message": "Interests received!"})
     
 if __name__ == '__main__':
-    app.run(port=54321, debug=True)
+    app.run(port=54325, debug=True)
