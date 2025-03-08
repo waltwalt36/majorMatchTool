@@ -232,17 +232,52 @@
         }
 
         function submitPreferences() {
-            const selectedButtons = document.querySelectorAll('.interest-button.selected');
-            if (selectedButtons.length < 2) {
-                alert("Please select exactly 2 options!");
-                return;
-            }
-            const selectedPreferences = Array.from(selectedButtons).map(button => button.textContent.trim());
-            alert(`You selected: ${selectedPreferences.join(', ')}`);
-            // Redirect to the next page
-            window.location.href = "unknown";
-            //Hi my name is walter
-        }
+    const selectedButtons = document.querySelectorAll('.interest-button.selected');
+    if (selectedButtons.length < 2) {
+        alert("Please select exactly 2 options!");
+        return;
+    }
+
+    // Extract selected preferences
+    const selectedPreferences = Array.from(selectedButtons).map(button => button.textContent.trim());
+
+    // Log the selected preferences (for debugging)
+    console.log("Selected Preferences:", selectedPreferences);
+
+    // Send data to the backend
+    sendDataToBackend(selectedPreferences);
+
+    // Redirect to the next page (if applicable)
+    window.location.href = "/next-page"; // Replace with the actual next page URL
+}
+
+function sendDataToBackend(data) {
+    // Update the backend endpoint to point to your Flask server
+    const backendEndpoint = "http://127.0.0.1:54321/submit_preferences"; // New endpoint for preferences
+
+    // Create a payload to send to the backend
+    const payload = {
+        preferences: data, // Send the selected preferences
+        timestamp: new Date().toISOString(), // Optional: Add a timestamp
+    };
+
+    // Send the data using fetch
+    fetch(backendEndpoint, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Success:", data);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            alert("Failed to submit preferences. Please try again.");
+        });
+}
     </script>
 </body>
 </html>
