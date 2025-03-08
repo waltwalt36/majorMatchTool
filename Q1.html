@@ -232,17 +232,63 @@
     </footer>
 
     <script>
-        function toggleInterest(button) {
-            button.classList.toggle('selected');
-        }
+            // Array to store selected interests
+    let selectedInterests = [];
 
-        function submitInterests() {
-            const selectedButtons = document.querySelectorAll('.interest-button.selected');
-            const selectedInterests = Array.from(selectedButtons).map(button => button.textContent.trim());
-            alert(`You selected: ${selectedInterests.join(', ')}`);
-            // Redirect to the next question page
-            window.location.href = "timePreference.html";
-        }
-    </script>
+    function toggleInterest(button) {
+    button.classList.toggle('selected');
+    const interest = button.textContent.trim();
+
+    // Add or remove interest from the array
+    if (button.classList.contains('selected')) {
+        selectedInterests.push(interest);
+    } else {
+        selectedInterests = selectedInterests.filter(item => item !== interest);
+    }
+}
+
+function submitInterests() {
+    if (selectedInterests.length === 0) {
+        alert("Please select at least one interest!");
+        return;
+    }
+
+    // Log the selected interests (for debugging)
+    console.log("Selected Interests:", selectedInterests);
+
+    // Send data to the backend
+    sendDataToBackend(selectedInterests);
+
+    // Redirect to the next question page
+    window.location.href = "Q2.html";
+}
+
+function sendDataToBackend(data) {
+    // Replace this with your actual backend API endpoint
+    const backendEndpoint = "https://your-backend-api.com/submit-interests";
+
+    // Create a payload to send to the backend
+    const payload = {
+        interests: data, // Send the selected interests
+        timestamp: new Date().toISOString(), // Optional: Add a timestamp
+    };
+
+    // Send the data using fetch
+    fetch(backendEndpoint, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Success:", data);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+}
+</script>
 </body>
 </html>
