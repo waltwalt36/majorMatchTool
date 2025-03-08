@@ -75,6 +75,9 @@
         .image-container {
             flex: 1;
             max-width: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         img {
@@ -169,41 +172,47 @@
 </head>
 <body>
     <header>
-        <img src="path-to-your-logo.png" alt="Logo" class="logo">
+        <!-- Paw Logo -->
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="40" height="40">
+            <path fill="#FF6B6B" d="M50 20c-8.284 0-15 6.716-15 15v10c0 8.284 6.716 15 15 15s15-6.716 15-15V35c0-8.284-6.716-15-15-15z"/>
+            <path fill="#FFA500" d="M30 50c-8.284 0-15 6.716-15 15v10c0 8.284 6.716 15 15 15s15-6.716 15-15V65c0-8.284-6.716-15-15-15z"/>
+            <path fill="#FF6B6B" d="M70 50c-8.284 0-15 6.716-15 15v10c0 8.284 6.716 15 15 15s15-6.716 15-15V65c0-8.284-6.716-15-15-15z"/>
+            <path fill="#FFA500" d="M50 80c-8.284 0-15 6.716-15 15v10c0 8.284 6.716 15 15 15s15-6.716 15-15V95c0-8.284-6.716-15-15-15z"/>
+        </svg>
         <h2>Interest Selection</h2>
     </header>
 
     <div class="container">
         <div class="content">
             <h1>Which topics or activities genuinely interest you?</h1>
-            <p>Pick as many as you want!</p>
+            <p>Select all that apply.</p>
             <div class="button-container">
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    🔢 Solving problems and working with numbers
+                    🔢 Solving math problems and working with numbers
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    🔬 Science, healthcare, and how things work
+                    🔬 Science, healthcare, and understanding how the world works
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    💻 Computers, coding, and technology
+                    💻 Coding, computer science, and new technology
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    🎨 Creativity, design, and self-expression
+                    🎨 Designing visuals, animation, or creative projects
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    📖 Writing, communication, and storytelling
+                    📖 Writing, journalism, or storytelling
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    🤝 Helping and understanding people
+                    🤝 Psychology, counseling, or understanding human behavior
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    📊 Business, marketing, and finance
+                    📊 Business, marketing, and financial strategies
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    ⚖️ Politics, law, and global issues
+                    ⚖️ Law, public policy, and government affairs
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                    🌱 Nature, animals, and the environment
+                    🌱 Nature, sustainability, and environmental sciences
                 </button>
             </div>
             <button class="next-button" onclick="submitInterests()">
@@ -214,7 +223,8 @@
             </div>
         </div>
         <div class="image-container">
-            <img src="https://example.com/path/to/your/interest-image.jpg" alt="Interest Selection">
+            <!-- Replace with a thematic illustration or icon -->
+            <img src="https://example.com/path/to/your/thematic-illustration.png" alt="Thematic Illustration">
         </div>
     </div>
 
