@@ -90,16 +90,21 @@
         .interest-button {
             background: rgba(255, 255, 255, 0.1);
             color: white;
-            padding: 1rem 2rem;
+            padding: 1rem;
             border: none;
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-            display: inline-flex;
+            display: flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
+            width: calc(50% - 0.5rem); /* Two columns with gap */
+            text-align: center;
+            white-space: normal; /* Allow text wrapping */
+            min-height: 80px; /* Consistent button height */
         }
 
         .interest-button.selected {
@@ -159,6 +164,10 @@
             header {
                 padding: 1rem;
             }
+
+            .interest-button {
+                width: 100%; /* Full width on mobile */
+            }
         }
     </style>
 </head>
@@ -180,38 +189,38 @@
             <p>Select all that apply.</p>
             <div class="button-container">
                 <button class="interest-button" onclick="toggleInterest(this)">
-                     Solving math problems and working with numbers
+                    🔢 Solving math problems and working with numbers
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                     Science, healthcare, and understanding how the world works
+                    🔬 Science, healthcare, and understanding how the world works
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                     Coding, computer science, and new technology
+                    💻 Coding, computer science, and new technology
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                     Designing visuals, animation, or creative projects
+                    🎨 Designing visuals, animation, or creative projects
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                     Writing, journalism, or storytelling
+                    📖 Writing, journalism, or storytelling
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                     Psychology, counseling, or understanding human behavior
+                    🤝 Psychology, counseling, or understanding human behavior
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                     Business, marketing, and financial strategies
+                    📊 Business, marketing, and financial strategies
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                     Law, public policy, and government affairs
+                    ⚖️ Law, public policy, and government affairs
                 </button>
                 <button class="interest-button" onclick="toggleInterest(this)">
-                     Nature, sustainability, and environmental sciences
+                    🌱 Nature, sustainability, and environmental sciences
                 </button>
             </div>
             <button class="next-button" onclick="submitInterests()">
-                Next 
+                Next ➡️
             </button>
             <div style="margin-top: 2rem; color: rgba(255, 255, 255, 0.7)">
-                <small> Your selections are secure and private.</small>
+                <small>🔒 Your selections are secure and private.</small>
             </div>
         </div>
         <!-- Left blank as requested -->
