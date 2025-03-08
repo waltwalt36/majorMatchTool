@@ -51,6 +51,7 @@ def submit_preferences():
     
     # Combine interests and time preferences into a single string
     combined_parameters = f"I enjoy {', '.join(user_responses['interests'])} and prefer spending time on {', '.join(user_responses['time_preferences'])}"
+    #new change
     
 if __name__ == '__main__':
     app.run(port=54321, debug=True)
